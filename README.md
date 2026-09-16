@@ -42,6 +42,7 @@ vscode/extensions.tsv      Code と Cursor で同一。profile<TAB>拡張ID
 scripts/macos/homebrew.sh          Homebrew 公式インストーラ
 scripts/macos/brew-bundle.sh.tmpl  brew bundle。Brewfile のレンダリング結果の hash で再実行
 scripts/macos/defaults.sh          defaults write
+scripts/macos/dock.sh              dockutil で Dock の並びを作り直す
 scripts/macos/vscode-extensions.sh.tmpl  tsv を読んで code --profile <name> --install-extension
 scripts/macos/tools.sh             git lfs install
 ```
