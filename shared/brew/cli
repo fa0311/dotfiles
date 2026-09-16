@@ -3,7 +3,6 @@ tap "mobile-dev-inc/tap"
 tap "teamookla/speedtest"
 
 brew "actionlint"
-brew "age"
 brew "awscli"
 brew "chezmoi"
 brew "colima"
