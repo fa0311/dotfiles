@@ -1,0 +1,67 @@
+{
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.11.4",
+  "schemes" : [
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse"
+        }
+      },
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : false
+        }
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0x13e",
+          "productName" : "ELECOM OpticalMouse",
+          "serialNumber" : "A9002F00",
+          "vendorID" : "0x56e"
+        }
+      },
+      "pointer" : {
+        "disableAcceleration" : true,
+        "redirectsToScroll" : false
+      },
+      "scrolling" : {
+        "acceleration" : 1,
+        "distance" : 3,
+        "reverse" : false,
+        "speed" : 0
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "trackpad"
+        }
+      },
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : false
+        }
+      }
+    },
+    {
+      "if" : {
+        "app" : "com.microsoft.VSCode",
+        "device" : {
+          "category" : "trackpad",
+          "productID" : "0x0",
+          "productName" : "Apple Internal Keyboard \/ Trackpad",
+          "serialNumber" : "HXMHKC00DCR0000DZQ+ANLB",
+          "vendorID" : "0x0"
+        }
+      },
+      "scrolling" : {
+        "reverse" : {
+          "horizontal" : false
+        }
+      }
+    }
+  ]
+}

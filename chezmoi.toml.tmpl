@@ -1,0 +1,5 @@
+{{- $machine := promptStringOnce . "machine" "Machine" .chezmoi.hostname -}}
+sourceDir = {{ joinPath .chezmoi.workingTree "machines" $machine | quote }}
+
+[data]
+  machine = {{ $machine | quote }}

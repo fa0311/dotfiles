@@ -1,0 +1,19 @@
+#!/bin/bash
+# {{ include "private_Library/private_Application Support/private_Code/User/extensions.txt" | sha256sum }}
+# {{ include "private_Library/private_Application Support/private_Cursor/User/extensions.txt" | sha256sum }}
+set -uo pipefail
+
+install_all() {
+  local cli="$1" list="$2"
+  [ -x "$cli" ] || return 0
+  local installed
+  installed="$("$cli" --list-extensions 2>/dev/null | tr '[:upper:]' '[:lower:]')"
+  while IFS= read -r ext; do
+    [ -z "$ext" ] && continue
+    grep -qix "$ext" <<<"$installed" && continue
+    "$cli" --install-extension "$ext" --force
+  done <"$list"
+}
+
+install_all "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" "$HOME/Library/Application Support/Code/User/extensions.txt"
+install_all "/Applications/Cursor.app/Contents/Resources/app/bin/cursor" "$HOME/Library/Application Support/Cursor/User/extensions.txt"
