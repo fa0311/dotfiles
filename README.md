@@ -39,8 +39,7 @@ mise/config.toml           グローバルのツールバージョン
 karabiner/karabiner.json
 vscode/settings.json       Code と Cursor で同一
 vscode/keybindings.json
-vscode/extensions.tsv      Code の拡張。profile<TAB>拡張ID
-cursor/extensions.tsv      Cursor の拡張。同形式
+vscode/extensions.tsv      Code と Cursor で同一。profile<TAB>拡張ID
 scripts/macos/homebrew.sh          Homebrew 公式インストーラ
 scripts/macos/brew-bundle.sh.tmpl  brew bundle。Brewfile のレンダリング結果の hash で再実行
 scripts/macos/defaults.sh          defaults write
