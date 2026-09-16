@@ -48,6 +48,8 @@ scripts/macos/terminal.sh.tmpl     Terminal.app のプロファイルを登録�
 scripts/macos/fonts.sh             Office 同梱の Consolas を ~/Library/Fonts にコピー
 scripts/macos/vscode-extensions.sh.tmpl  tsv を読んで code --profile <name> --install-extension
 scripts/macos/tools.sh             git lfs install
+scripts/credentials/export.sh      認証情報を age で固めて持ち出す（手動）
+scripts/credentials/import.sh      その復元（手動）
 ```
 
 ## 新しいマシン
@@ -82,12 +84,22 @@ chezmoi update --refresh-externals   # oh-my-zsh も再取得
 `chezmoi add ~/path` は今のマシンのディレクトリに入る。shared に置くなら手で移して include に置き換える。
 Karabiner や LinearMouse のようにアプリ自身が設定を書き直すものは、変更後に `chezmoi re-add`。
 
+## 認証情報
+
+リポジトリには入れない。`shared/scripts/credentials/export.sh` で 1 ファイルに固めて USB や NAS に置く。
+
+```sh
+shared/scripts/credentials/export.sh /Volumes/USB/credentials.tar.age   # パスフレーズを聞かれる
+shared/scripts/credentials/import.sh /Volumes/USB/credentials.tar.age   # 新しいマシンで
+```
+
+中身: `~/.ssh/id_ed25519`（と .pub）、GPG 秘密鍵 `83A8A5E74872A8AA` と信頼度、`~/.npmrc`、`~/.android/debug.keystore`。
+`age` は Brewfile に入っているが、初回は brew bundle より前に使うので `brew install age`。
+
+ログインし直せば戻るものは含めない: `gh auth login`、Claude Code、Codex、`sf org login web`、docker。
+
 ## 手動で移す物
 
-- `~/.ssh/id_ed25519`
-- GPG 秘密鍵: `gpg --export-secret-keys 83A8A5E74872A8AA > key.asc` → `gpg --import key.asc`
-- `~/.npmrc`（GitHub Packages のトークン。`npm login --registry=https://npm.pkg.github.com`）
-- `gh auth login`
 - App Store: WireGuard, Transporter
 - MouseAssistant
 - Xcode: `xcodes install`
