@@ -1,19 +1,30 @@
 #!/bin/bash
-# {{ include "private_Library/private_Application Support/private_Code/User/extensions.txt" | sha256sum }}
-# {{ include "private_Library/private_Application Support/private_Cursor/User/extensions.txt" | sha256sum }}
+# {{ include "../../shared/vscode/extensions.tsv" | sha256sum }}
+# {{ include "private_dot_config/cursor/extensions.tsv" | sha256sum }}
 set -uo pipefail
 
-install_all() {
-  local cli="$1" list="$2"
+install_from_tsv() {
+  local cli="$1" tsv="$2"
   [ -x "$cli" ] || return 0
-  local installed
-  installed="$("$cli" --list-extensions 2>/dev/null | tr '[:upper:]' '[:lower:]')"
-  while IFS= read -r ext; do
+  local current="" installed=""
+  while IFS=$'\t' read -r profile ext; do
     [ -z "$ext" ] && continue
+    if [ "$profile" != "$current" ]; then
+      current="$profile"
+      if [ "$profile" = default ]; then
+        installed="$("$cli" --list-extensions 2>/dev/null)"
+      else
+        installed="$("$cli" --profile "$profile" --list-extensions 2>/dev/null)"
+      fi
+    fi
     grep -qix "$ext" <<<"$installed" && continue
-    "$cli" --install-extension "$ext" --force
-  done <"$list"
+    if [ "$profile" = default ]; then
+      "$cli" --install-extension "$ext" --force
+    else
+      "$cli" --profile "$profile" --install-extension "$ext" --force
+    fi
+  done <"$tsv"
 }
 
-install_all "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" "$HOME/Library/Application Support/Code/User/extensions.txt"
-install_all "/Applications/Cursor.app/Contents/Resources/app/bin/cursor" "$HOME/Library/Application Support/Cursor/User/extensions.txt"
+install_from_tsv "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" "$HOME/.config/vscode/extensions.tsv"
+install_from_tsv "/Applications/Cursor.app/Contents/Resources/app/bin/cursor" "$HOME/.config/cursor/extensions.tsv"

@@ -2,9 +2,5 @@
 	name = ふぁ
 	email = yuki@yuki0311.com
 	signingkey = EAB5AF5AA7ED7A16C4027B5283A8A5E74872A8AA
-[credential "https://huggingface.co"]
-	provider = generic
 [commit]
 	gpgsign = true
-[gpg]
-	program = /opt/homebrew/bin/gpg

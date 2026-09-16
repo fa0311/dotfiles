@@ -9,6 +9,7 @@ chezmoi.toml.tmpl    本体。Machine 名を 1 回だけ聞く（既定 = ホス
 .chezmoiignore       "*"。ルートを source として apply しても何も起きないようにする
 machines/<name>/     そのマシンの chezmoi source。他のマシンや OS を参照しない
 shared/              素のファイル。各マシンが {{ include "../../shared/..." }} で任意に取り込む
+                     今あるのは zsh の history と関数、git の identity、ssh の github.com、VS Code の settings / keybindings / 拡張一覧
 ```
 
 ## 新しいマシン
@@ -60,5 +61,7 @@ chezmoi update --refresh-externals   # oh-my-zsh も再取得
 
 - `.oh-my-zsh` は `.chezmoiexternal.toml` で tarball 取得。git clone ではなくなるので `omz update` は使わず `chezmoi update --refresh-externals`
 - `.zshrc` の `restart` もそれに合わせて変更済み
-- `Cursor/User/settings.json` は Code の settings に Cursor 固有キーを足したもの
+- VS Code は Settings Sync を使わない（`Manage` → `Settings Sync is On` → `Turn Off`、クラウド側も削除）。settings / keybindings は `shared/vscode/` を Code と Cursor が include し、Cursor は `cursor.*` のキーだけ足している
+- 拡張は profile 単位。`shared/vscode/extensions.tsv`（Code）と `.config/cursor/extensions.tsv`（Cursor）に `profile<TAB>extension` で並べ、スクリプト 40 が `code --profile <name> --install-extension` で入れる。profile は無ければ作られる。ワークスペースと profile の紐付けは復元されないので開き直して選ぶ
+- 現状の拡張一覧を書き戻す: `code --profile Python --list-extensions` を profile ごとに実行して tsv を更新
 - git は `~/.config/git/config`（自分の設定、chezmoi 管理）と `~/.gitconfig`（`git lfs install` などツールが書く。空で作るだけで以後は触らない）に分けている。`git config --global` は `~/.gitconfig` に書かれるので chezmoi と衝突しない
