@@ -36,6 +36,7 @@ gnupg/common.conf          use-keyboxd
 brew/cli                   tap と formula
 brew/gui                   cask
 karabiner/karabiner.json
+terminal/Original.terminal Terminal.app のプロファイル（Consolas 12、配色、Option を Meta に）。書き出しは Terminal > 設定 > プロファイル > 書き出す
 vscode/settings.json       Code と Cursor で同一
 vscode/keybindings.json
 vscode/extensions.tsv      Code と Cursor で同一。profile<TAB>拡張ID
@@ -43,6 +44,7 @@ scripts/macos/homebrew.sh          Homebrew 公式インストーラ
 scripts/macos/brew-bundle.sh.tmpl  brew bundle。Brewfile のレンダリング結果の hash で再実行
 scripts/macos/defaults.sh          defaults write
 scripts/macos/dock.sh              dockutil で Dock の並びを作り直す
+scripts/macos/terminal.sh.tmpl     Terminal.app のプロファイルを登録して既定にする
 scripts/macos/vscode-extensions.sh.tmpl  tsv を読んで code --profile <name> --install-extension
 scripts/macos/tools.sh             git lfs install
 ```
