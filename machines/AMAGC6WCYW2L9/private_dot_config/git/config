@@ -8,5 +8,3 @@
 	gpgsign = true
 [gpg]
 	program = /opt/homebrew/bin/gpg
-{{ include "../../shared/git/lfs" -}}
-{{ include "../../shared/git/aliases" -}}

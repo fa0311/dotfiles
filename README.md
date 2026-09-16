@@ -61,3 +61,4 @@ chezmoi update --refresh-externals   # oh-my-zsh も再取得
 - `.oh-my-zsh` は `.chezmoiexternal.toml` で tarball 取得。git clone ではなくなるので `omz update` は使わず `chezmoi update --refresh-externals`
 - `.zshrc` の `restart` もそれに合わせて変更済み
 - `Cursor/User/settings.json` は Code の settings に Cursor 固有キーを足したもの
+- git は `~/.config/git/config`（自分の設定、chezmoi 管理）と `~/.gitconfig`（`git lfs install` などツールが書く。空で作るだけで以後は触らない）に分けている。`git config --global` は `~/.gitconfig` に書かれるので chezmoi と衝突しない
