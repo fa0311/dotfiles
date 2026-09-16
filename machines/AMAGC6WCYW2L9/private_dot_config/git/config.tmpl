@@ -1,5 +1,3 @@
 {{ include "../../shared/git/identity" -}}
-[credential "https://huggingface.co"]
-	provider = generic
-[gpg]
-	program = /opt/homebrew/bin/gpg
+{{ include "../../shared/git/credential" -}}
+{{ include "../../shared/git/gpg-homebrew" -}}

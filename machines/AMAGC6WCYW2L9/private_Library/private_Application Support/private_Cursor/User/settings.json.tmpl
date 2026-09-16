@@ -1,2 +1,1 @@
-{{ include "../../shared/vscode/settings.json" | trimSuffix "}" }}  "cursor.cpp.disabledLanguages": ["plaintext"],
-}
+{{ includeTemplate "../../shared/vscode/cursor-settings.json.tmpl" . -}}

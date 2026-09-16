@@ -1,34 +1,6 @@
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
-
+{{ include "../../shared/zsh/omz.zsh" }}
 {{ include "../../shared/zsh/history.zsh" }}
-eval "$(mise activate zsh)"
-source $ZSH/oh-my-zsh.sh
-
-
-alias docker-compose="docker compose"
-
+{{ include "../../shared/zsh/mise.zsh" }}
+{{ include "../../shared/zsh/aliases.zsh" }}
 {{ include "../../shared/zsh/functions.zsh" }}
-
-restart(){
-  brew update
-  brew upgrade
-  brew autoremove
-  brew cleanup
-
-  chezmoi update --refresh-externals
-  mise cache prune
-  
-  echo "Yes" | sudo --stdin shutdown -r now 
-}
-
-
-fkill(){
-  pkill -f flutter
-  pkill -f dart
-  pkill -f analysis_server
-  pkill -f Xcode
-  pkill -f Simulator
-  pkill -f CoreSimulator
-}
+{{ include "../../shared/zsh/macos.zsh" -}}

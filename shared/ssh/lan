@@ -1,0 +1,19 @@
+Host 192.168.70.1
+  HostName 192.168.70.1
+  User yuki
+
+Host 192.168.70.2
+  HostName 192.168.70.2
+  User yuki
+
+Host 192.168.70.3
+  HostName 192.168.70.3
+  User yuki
+
+Host 192.168.70.4
+  HostName 192.168.70.4
+  User yuki
+
+Host 192.168.70.5
+  HostName 192.168.70.5
+  User yuki

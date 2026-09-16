@@ -1,18 +1,1 @@
-#!/bin/bash
-# {{ include "../../shared/vscode/extensions.tsv" | sha256sum }}
-# {{ include "private_dot_config/cursor/extensions.tsv" | sha256sum }}
-set -euo pipefail
-
-install_from_tsv() {
-  local cli="$1" tsv="$2"
-  while IFS=$'\t' read -r profile ext; do
-    if [ "$profile" = default ]; then
-      "$cli" --install-extension "$ext"
-    else
-      "$cli" --profile "$profile" --install-extension "$ext"
-    fi
-  done <"$tsv"
-}
-
-install_from_tsv "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" "$HOME/.config/vscode/extensions.tsv"
-install_from_tsv "/Applications/Cursor.app/Contents/Resources/app/bin/cursor" "$HOME/.config/cursor/extensions.tsv"
+{{ includeTemplate "../../shared/scripts/macos/vscode-extensions.sh.tmpl" . -}}

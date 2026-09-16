@@ -1,5 +1,1 @@
-#!/bin/bash
-# {{ include "dot_Brewfile" | sha256sum }}
-set -euo pipefail
-eval "$(/opt/homebrew/bin/brew shellenv)"
-brew bundle --file="$HOME/.Brewfile" --no-upgrade
+{{ includeTemplate "../../shared/scripts/macos/brew-bundle.sh.tmpl" . -}}
