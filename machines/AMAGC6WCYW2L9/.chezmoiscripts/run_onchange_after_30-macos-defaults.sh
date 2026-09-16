@@ -8,4 +8,4 @@ defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 defaults write com.apple.finder FXPreferredViewStyle -string "glyv"
 defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
-killall Dock Finder 2>/dev/null || true
+killall Dock Finder

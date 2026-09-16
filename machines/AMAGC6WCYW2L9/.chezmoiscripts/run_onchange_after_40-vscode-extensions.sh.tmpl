@@ -1,27 +1,15 @@
 #!/bin/bash
 # {{ include "../../shared/vscode/extensions.tsv" | sha256sum }}
 # {{ include "private_dot_config/cursor/extensions.tsv" | sha256sum }}
-set -uo pipefail
+set -euo pipefail
 
 install_from_tsv() {
   local cli="$1" tsv="$2"
-  [ -x "$cli" ] || return 0
-  local current="" installed=""
   while IFS=$'\t' read -r profile ext; do
-    [ -z "$ext" ] && continue
-    if [ "$profile" != "$current" ]; then
-      current="$profile"
-      if [ "$profile" = default ]; then
-        installed="$("$cli" --list-extensions 2>/dev/null)"
-      else
-        installed="$("$cli" --profile "$profile" --list-extensions 2>/dev/null)"
-      fi
-    fi
-    grep -qix "$ext" <<<"$installed" && continue
     if [ "$profile" = default ]; then
-      "$cli" --install-extension "$ext" --force
+      "$cli" --install-extension "$ext"
     else
-      "$cli" --profile "$profile" --install-extension "$ext" --force
+      "$cli" --profile "$profile" --install-extension "$ext"
     fi
   done <"$tsv"
 }
