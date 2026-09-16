@@ -35,7 +35,6 @@ gnupg/gpg-agent-macos.conf pinentry-mac
 gnupg/common.conf          use-keyboxd
 brew/cli                   tap と formula
 brew/gui                   cask
-mise/config.toml           グローバルのツールバージョン
 karabiner/karabiner.json
 vscode/settings.json       Code と Cursor で同一
 vscode/keybindings.json
@@ -44,7 +43,7 @@ scripts/macos/homebrew.sh          Homebrew 公式インストーラ
 scripts/macos/brew-bundle.sh.tmpl  brew bundle。Brewfile のレンダリング結果の hash で再実行
 scripts/macos/defaults.sh          defaults write
 scripts/macos/vscode-extensions.sh.tmpl  tsv を読んで code --profile <name> --install-extension
-scripts/macos/tools.sh             mise install, git lfs install
+scripts/macos/tools.sh             git lfs install
 ```
 
 ## 新しいマシン
