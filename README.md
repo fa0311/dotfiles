@@ -37,10 +37,8 @@ brew/cli                   tap と formula
 brew/gui                   cask
 mise/config.toml           グローバルのツールバージョン
 karabiner/karabiner.json
-claude/settings.json
-vscode/settings.json       Code と Cursor 共通の settings
+vscode/settings.json       Code と Cursor で同一
 vscode/keybindings.json
-vscode/cursor-settings.json.tmpl   settings.json に cursor.* を足したもの
 vscode/extensions.tsv      Code の拡張。profile<TAB>拡張ID
 cursor/extensions.tsv      Cursor の拡張。同形式
 scripts/macos/homebrew.sh          Homebrew 公式インストーラ
