@@ -45,6 +45,7 @@ scripts/macos/brew-bundle.sh.tmpl  brew bundle。Brewfile のレンダリング�
 scripts/macos/defaults.sh          defaults write
 scripts/macos/dock.sh              dockutil で Dock の並びを作り直す
 scripts/macos/terminal.sh.tmpl     Terminal.app のプロファイルを登録して既定にする
+scripts/macos/fonts.sh             Office 同梱の Consolas を ~/Library/Fonts にコピー
 scripts/macos/vscode-extensions.sh.tmpl  tsv を読んで code --profile <name> --install-extension
 scripts/macos/tools.sh             git lfs install
 ```
@@ -87,7 +88,6 @@ Karabiner や LinearMouse のようにアプリ自身が設定を書き直すも
 - GPG 秘密鍵: `gpg --export-secret-keys 83A8A5E74872A8AA > key.asc` → `gpg --import key.asc`
 - `~/.npmrc`（GitHub Packages のトークン。`npm login --registry=https://npm.pkg.github.com`）
 - `gh auth login`
-- Consolas フォント（`~/Library/Fonts/CONSOLA*.TTF`）
 - App Store: WireGuard, Transporter
 - MouseAssistant
 - Xcode: `xcodes install`
@@ -97,6 +97,7 @@ Karabiner や LinearMouse のようにアプリ自身が設定を書き直すも
 
 会社支給 MacBook。`Company Portal` 経由のアプリ（Defender, Office, Teams, OneDrive, AWS VPN Client）は Brewfile に書かない。
 
+- Consolas は再配布不可なのでリポジトリに入れない。MDM で入る Office の `Microsoft Word.app/Contents/Resources/DFonts/` からコピーする。Office のないマシンでは別の手段が必要
 - `.oh-my-zsh` は tarball 取得。git clone ではなくなるので `omz update` は使わず `chezmoi update --refresh-externals`
 - VS Code は Settings Sync を使わない（`Manage` → `Settings Sync is On` → `Turn Off`、クラウド側も削除）。profile は tsv から `code --profile` で作られる。ワークスペースと profile の紐付けは復元されないので開き直して選ぶ
 - 拡張一覧の更新: `code --profile <name> --list-extensions` を profile ごとに実行して `shared/vscode/extensions.tsv` を書き直す
