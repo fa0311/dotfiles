@@ -1,5 +1,4 @@
 #!/bin/bash
-# {{ includeTemplate "private_dot_config/terminal/Original.terminal.tmpl" . | sha256sum }}
 set -euo pipefail
 defaults write com.apple.Terminal "Window Settings" -dict-add Original "$(cat "$HOME/.config/terminal/Original.terminal")"
 defaults write com.apple.Terminal "Default Window Settings" -string Original

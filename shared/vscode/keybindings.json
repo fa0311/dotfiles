@@ -1,28 +1,22 @@
 [
-    {
-        "key": "pageup",
-        "command": "-cursorPageUp",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "pagedown",
-        "command": "-cursorPageDown",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "cmd+y",
-        "command": "redo"
-    },
-    {
-        "key": "shift+cmd+z",
-        "command": "-redo"
-    },
-    {
-        "key": "shift+enter",
-        "command": "workbench.action.terminal.sendSequence",
-        "args": {
-            "text": "\u001b\r"
-        },
-        "when": "terminalFocus"
-    }
+  {
+    "key": "pageup",
+    "command": "-cursorPageUp"
+  },
+  {
+    "key": "pagedown",
+    "command": "-cursorPageDown"
+  },
+  {
+    "key": "insert",
+    "command": "textInputFocus"
+  },
+  {
+    "key": "cmd+y",
+    "command": "redo"
+  },
+  {
+    "key": "shift+cmd+z",
+    "command": "-redo"
+  }
 ]

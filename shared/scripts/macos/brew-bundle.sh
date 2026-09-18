@@ -1,5 +1,4 @@
 #!/bin/bash
-# {{ includeTemplate "dot_Brewfile.tmpl" . | sha256sum }}
 set -euo pipefail
 eval "$(/opt/homebrew/bin/brew shellenv)"
 brew bundle --file="$HOME/.Brewfile" --no-upgrade

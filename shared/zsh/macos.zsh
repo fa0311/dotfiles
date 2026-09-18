@@ -18,3 +18,8 @@ fkill(){
   pkill -f Simulator
   pkill -f CoreSimulator
 }
+
+dgkill(){
+  echo "Yes" | sudo --stdin pkill -f dgdaemon
+  echo "Yes" | sudo --stdin pkill -f DgSessionSvc
+}

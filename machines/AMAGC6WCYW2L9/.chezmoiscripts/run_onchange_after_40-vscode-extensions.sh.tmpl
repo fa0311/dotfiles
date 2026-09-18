@@ -1,1 +1,3 @@
-{{ includeTemplate "../../shared/scripts/macos/vscode-extensions.sh.tmpl" . -}}
+{{ include "../../shared/scripts/macos/vscode-extensions.sh" -}}
+# {{ includeTemplate "private_dot_config/vscode/extensions.tsv.tmpl" . | sha256sum }}
+# {{ includeTemplate "private_dot_config/cursor/extensions.tsv.tmpl" . | sha256sum }}

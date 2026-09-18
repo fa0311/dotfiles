@@ -1,15 +1,16 @@
 {
-  "workbench.iconTheme": "vscode-icons",
   "workbench.colorTheme": "Dark Modern",
-  "editor.fontFamily": "Consolas, 'Courier New', monospace",
   "workbench.experimental.modernUI": false,
+  "workbench.agentsWindowButton.enabled": false,
+  "workbench.iconTheme": "vscode-icons",
+  "editor.fontFamily": "Consolas, 'Courier New', monospace",
   "workbench.editorAssociations": {
     "*.copilotmd": "vscode.markdown.preview.editor",
     "{hexdiff}:/**/*.*": "hexEditor.hexedit",
     "*.md": "default",
     "*.wasm": "hexEditor.hexedit",
     "*.csv": "default",
-    "*.db": "default",
+    "*.db": "default"
   },
   "window.newWindowDimensions": "inherit",
   "editor.fontSize": 13,
@@ -19,7 +20,7 @@
   "editor.formatOnPaste": false,
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
-    "source.organizeImports": "explicit",
+    "source.organizeImports": "explicit"
   },
   "editor.inlineSuggest.enabled": true,
   "editor.largeFileOptimizations": false,
@@ -30,7 +31,7 @@
     "*": true,
     "plaintext": true,
     "markdown": true,
-    "scminput": true,
+    "scminput": true
   },
   "github.copilot.nextEditSuggestions.enabled": true,
   "git.addAICoAuthor": "off",
@@ -58,7 +59,7 @@
     "**/*.gr.dart": true,
     "**/*.mocks.dart": true,
     "**/__pycache__": true,
-    "**/.DS_Store": true,
+    "**/.DS_Store": true
   },
   "dart.debugExternalPackageLibraries": true,
   "dart.debugSdkLibraries": true,
@@ -67,16 +68,5 @@
   "window.commandCenter": true,
   "cursor.general.enableShadowWorkspace": true,
   "ty.inlayHints.variableTypes": false,
-  "ty.inlayHints.callArgumentNames": false,
-  "editor.accessibilitySupport": "off",
-  "yaml.disableSchemaDetection": [
-    "**/.github/workflows/*.yml",
-    "**/.github/workflows/*.yaml",
-    "**/.gitea/workflows/*.yml",
-    "**/.gitea/workflows/*.yaml",
-    "**/.forgejo/workflows/*.yml",
-    "**/.forgejo/workflows/*.yaml",
-  ],
-  "claudeCode.preferredLocation": "panel",
-  "githubPullRequests.pullBranch": "never",
+  "ty.inlayHints.callArgumentNames": false
 }

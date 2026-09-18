@@ -1,1 +1,2 @@
-{{ includeTemplate "../../shared/scripts/macos/brew-bundle.sh.tmpl" . -}}
+{{ include "../../shared/scripts/macos/brew-bundle.sh" -}}
+# {{ includeTemplate "dot_Brewfile.tmpl" . | sha256sum }}
