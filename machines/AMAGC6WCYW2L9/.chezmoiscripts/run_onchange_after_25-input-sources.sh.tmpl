@@ -1,0 +1,4 @@
+#!/bin/bash
+set -euo pipefail
+# {{ includeTemplate "../../shared/scripts/macos/input-sources.swift" . | sha256sum }}
+swift "{{ .chezmoi.sourceDir }}/../../shared/scripts/macos/input-sources.swift"

@@ -17,15 +17,19 @@ create_profiles() {
 }
 
 install_from_tsv() {
-  local cli="$1" tsv="$2" only="$3"
-  while IFS=$'\t' read -r profile ext target; do
-    [ "$target" = all ] || [ "$target" = "$only" ] || continue
-    if [ "$profile" = default ]; then
-      "$cli" --install-extension "$ext" </dev/null
-    else
-      "$cli" --profile "$profile" --install-extension "$ext" </dev/null
-    fi
-  done <"$tsv"
+  local cli="$1" tsv="$2" only="$3" profile row_profile ext target failed=0
+  local args=()
+  while IFS= read -r profile; do
+    args=()
+    [ "$profile" = default ] || args+=(--profile "$profile")
+    while IFS=$'\t' read -r row_profile ext target; do
+      [ "$row_profile" = "$profile" ] || continue
+      [ "$target" = all ] || [ "$target" = "$only" ] || continue
+      args+=(--install-extension "$ext")
+    done <"$tsv"
+    "$cli" "${args[@]}" </dev/null || failed=1
+  done < <(cut -f1 "$tsv" | sort -u)
+  return "$failed"
 }
 
 CODE="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"

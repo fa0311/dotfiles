@@ -1,0 +1,24 @@
+#!/bin/bash
+set -euo pipefail
+
+sdk_root="$HOME/Library/Android/sdk"
+sdkmanager="$sdk_root/cmdline-tools/latest/bin/sdkmanager"
+
+if [[ ! -x "$sdkmanager" ]]; then
+  cat >&2 <<'EOF'
+Android SDK Command-line Tools are not installed.
+Open Android Studio > More Actions > SDK Manager > SDK Tools and install
+"Android SDK Command-line Tools (latest)", then rerun chezmoi apply.
+EOF
+  exit 1
+fi
+
+"$sdkmanager" --sdk_root="$sdk_root" --install \
+  "platform-tools" \
+  "platforms;android-34" \
+  "platforms;android-35" \
+  "platforms;android-36" \
+  "build-tools;36.1.0" \
+  "cmake;3.22.1" \
+  "ndk;28.2.13676358" \
+  "ndk;29.0.14206865"

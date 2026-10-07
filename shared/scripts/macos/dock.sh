@@ -1,21 +1,36 @@
 #!/bin/bash
 set -euo pipefail
+add_app() {
+  if [ -d "$1" ]; then
+    dockutil --add "$1" --no-restart
+  else
+    printf 'Skipping unavailable Dock app: %s\n' "$1" >&2
+  fi
+}
+
 dockutil --remove all --no-restart
-dockutil --add "/System/Applications/Apps.app" --no-restart
-dockutil --add "/Applications/Google Chrome.app" --no-restart
-dockutil --add "/Applications/Microsoft Edge.app" --no-restart
-dockutil --add "/Applications/Visual Studio Code.app" --no-restart
-dockutil --add "/Applications/Cursor.app" --no-restart
-dockutil --add "/Applications/Microsoft Teams.app" --no-restart
-dockutil --add "/Applications/Slack.app" --no-restart
-dockutil --add "/System/Applications/System Settings.app" --no-restart
-dockutil --add "/System/Applications/Utilities/Activity Monitor.app" --no-restart
-dockutil --add "/System/Applications/Utilities/Terminal.app" --no-restart
-dockutil --add "/Applications/WireGuard.app" --no-restart
-dockutil --add "/System/Applications/QuickTime Player.app" --no-restart
-dockutil --add "/Applications/OBS.app" --no-restart
-dockutil --add "/Applications/Transporter.app" --no-restart
-dockutil --add "$(ls -d /Applications/Xcode-*.app | sort -V | tail -1)" --no-restart
-dockutil --add "/Applications/ChatGPT.app" --no-restart
-dockutil --add "/Applications/Claude.app" --no-restart
+add_app "/System/Applications/Apps.app"
+add_app "/Applications/Google Chrome.app"
+add_app "/Applications/Microsoft Edge.app"
+add_app "/Applications/Visual Studio Code.app"
+add_app "/Applications/Cursor.app"
+add_app "/Applications/Microsoft Teams.app"
+add_app "/Applications/Slack.app"
+add_app "/System/Applications/System Settings.app"
+add_app "/System/Applications/Utilities/Activity Monitor.app"
+add_app "/System/Applications/Utilities/Terminal.app"
+add_app "/Applications/WireGuard.app"
+add_app "/Applications/OBS.app"
+add_app "/Applications/Transporter.app"
+shopt -s nullglob
+xcodes=(/Applications/Xcode-*.app)
+if [ "${#xcodes[@]}" -gt 0 ]; then
+  add_app "$(printf '%s\n' "${xcodes[@]}" | sort -V | tail -1)"
+elif [ -d /Applications/Xcode.app ]; then
+  add_app /Applications/Xcode.app
+else
+  printf 'Skipping unavailable Dock app: Xcode\n' >&2
+fi
+add_app "/Applications/ChatGPT.app"
+add_app "/Applications/Claude.app"
 killall Dock
